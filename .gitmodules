@@ -1,0 +1,3 @@
+[submodule "philosophers/libft"]
+	path = philosophers/libft
+	url = git@github.com:benmaia/libft.git
