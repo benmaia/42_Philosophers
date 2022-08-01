@@ -12,6 +12,7 @@ SRC_DIR		=	srcs
 OBJ_DIR		=	$(BUILD_DIR)/objects
 
 SRC		=	$(SRC_DIR)/main.c \
+				$(SRC_DIR)/utils.c \
 
 OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
