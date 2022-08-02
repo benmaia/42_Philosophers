@@ -48,3 +48,5 @@ fclean: clean
 	@echo "$(RED)[ Philosophers has been removed! ]$(RESET)"
 
 re: fclean all
+
+#/*printf("nb philo %d\ntime die %d\ntime eat %d\ntime sleep %d\nnb eating %d\n", d->arg->nb_philo, d->arg->time_die, d->arg->time_eat, d->arg->time_sleep, d->arg->nb_eating);*/

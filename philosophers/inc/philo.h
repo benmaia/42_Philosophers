@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 03:39:14 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:59:32 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,31 @@ typedef enum s_status {
 }	t_status;
 
 typedef struct s_args {
-	int	nb_philo;
-	int	time_die;
-	int	time_eat;
-	int	time_sleep;
-	int	nb_eating;
+	int	n_philo;
+	int	t_die;
+	int	t_eat;
+	int	t_sleep;
+	int	n_eat;
 }	t_args;
 
 typedef struct s_philo {
-	pthread_mutex_t	fork;
-	unsigned int				nb;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
+	unsigned int	nb;
 	int				state;
 }	t_philo;
 
 typedef struct s_data {
-	t_args	*arg;
-	t_philo	*philo;
+	t_args		*arg;
+	t_philo		*philo;
 	t_status	*status;
 }	t_data;
 
-void	parser(t_data *d, int argc, char **argv);
+void			parser(t_data *d, int argc, char **argv);
 
 unsigned int	ft_atoi(const char *str);
 
-void	ft_free(void **ptr);
+void			ft_free(void **ptr);
 
 // Colors
 # define BLACK "\e[1;30m"
