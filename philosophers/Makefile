@@ -13,6 +13,7 @@ OBJ_DIR		=	$(BUILD_DIR)/objects
 
 SRC		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils.c \
+				$(SRC_DIR)/parser.c \
 
 OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
