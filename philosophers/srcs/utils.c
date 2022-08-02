@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:18:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 01:38:58 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/02 03:36:29 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_free(void **ptr)
 	ptr = NULL;
 }
 
-int	ft_atoi(const char *str)
+unsigned int	ft_atoi(const char *str)
 {
 	int	i;
 	int	sign;

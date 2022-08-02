@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 00:21:17 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/02 03:39:14 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,33 @@ typedef struct s_args {
 
 typedef struct s_philo {
 	pthread_mutex_t	fork;
-	int				nb;
+	unsigned int				nb;
 	int				state;
 }	t_philo;
 
 typedef struct s_data {
 	t_args	*arg;
 	t_philo	*philo;
-	t_status	*st;
+	t_status	*status;
 }	t_data;
 
 void	parser(t_data *d, int argc, char **argv);
 
-int	ft_atoi(const char *str);
+unsigned int	ft_atoi(const char *str);
 
 void	ft_free(void **ptr);
+
+// Colors
+# define BLACK "\e[1;30m"
+# define RED "\e[1;31m"
+# define GREEN "\e[1;32m"
+# define YELLOW "\e[1;33m"
+# define BLUE "\e[1;34m"
+# define PURPLE "\e[1;35m"
+# define CYAN "\e[1;36m"
+# define WHITE "\e[1;37m"
+# define RES "\e[0m"
+# define ORANGE1 "\033[38;5;214m"
+# define ORANGE2 "\033[38;5;202m"
 
 #endif

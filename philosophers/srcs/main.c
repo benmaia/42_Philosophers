@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:57:47 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 01:42:27 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/02 03:18:58 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ int	main(int argc, char **argv)
 	t_data	d;
 
 	parser(&d, argc, argv);
+	ft_free ((void *)&d.arg);
 }

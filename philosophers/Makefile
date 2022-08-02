@@ -31,8 +31,9 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)[ Philosophers is ready to use! ] $(RESET)"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c | $(BUILD_DIR)
-	@echo "$(GREEN)[ Creating $(notdir $@) ]$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $(^) -o $(@)
+
+#@echo "$(GREEN)[ Creating $(notdir $@) ]$(RESET)"
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
@@ -44,6 +45,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)[ Minishell has been removed! ]$(RESET)"
+	@echo "$(RED)[ Philosophers has been removed! ]$(RESET)"
 
 re: fclean all
