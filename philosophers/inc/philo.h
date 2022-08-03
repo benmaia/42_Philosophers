@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 20:59:32 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:58:35 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ typedef struct s_args {
 }	t_args;
 
 typedef struct s_philo {
-	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	unsigned int	nb;
 	int				state;
+	pthread_t		th;
 }	t_philo;
 
 typedef struct s_data {
