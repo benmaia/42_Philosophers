@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 20:59:32 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/04 20:30:17 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,6 @@
 # include <string.h>
 # include <pthread.h>
 # include <unistd.h>
-
-typedef enum s_status {
-	EATING,
-	SLEEPING,
-	DIED,
-	NONE
-}	t_status;
-
-typedef struct s_args {
-	int	n_philo;
-	int	t_die;
-	int	t_eat;
-	int	t_sleep;
-	int	n_eat;
-}	t_args;
-
-typedef struct s_philo {
-	pthread_mutex_t	l_fork;
-	pthread_mutex_t	*r_fork;
-	unsigned int	nb;
-	int				state;
-}	t_philo;
-
-typedef struct s_data {
-	t_args		*arg;
-	t_philo		*philo;
-	t_status	*status;
-}	t_data;
-
-void			parser(t_data *d, int argc, char **argv);
-
-unsigned int	ft_atoi(const char *str);
-
-void			ft_free(void **ptr);
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -65,5 +31,49 @@ void			ft_free(void **ptr);
 # define RES "\e[0m"
 # define ORANGE1 "\033[38;5;214m"
 # define ORANGE2 "\033[38;5;202m"
+
+typedef enum s_status {
+	NONE,
+	EATING,
+	SLEEPING,
+	DIED
+}	t_status;
+
+typedef struct s_args {
+	int	n_philo;
+	int	t_die;
+	int	t_eat;
+	int	t_sleep;
+	int	n_eat;
+}	t_args;
+
+typedef struct s_philo {
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	unsigned int	nb;
+	int				state;
+}	t_philo;
+
+typedef struct s_data {
+	t_args		*arg;
+	t_philo		*philo;
+	t_status	*status;
+}	t_data;
+
+/*#################### PARSER ##################*/
+
+void			parser(t_data *d, int argc, char **argv);
+
+/*#################### PARSER ##################*/
+
+void			init(t_data *d, t_data *g, int x);
+
+/*#################### UTILS ##################*/
+
+unsigned int	ft_atoi(const char *str);
+
+/*#################### FREE ##################*/
+
+void			ft_free(void **ptr);
 
 #endif

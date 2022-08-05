@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/02 20:54:42 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:39:01 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	checker(t_args **arg, int argc, int i)
 {
-	if ((*arg)->n_philo >= 0)
+	if ((*arg)->n_philo >= 1)
 		i = 1;
 	if ((*arg)->t_die >= 0)
 		i++;
@@ -56,7 +56,6 @@ void	parser(t_data *d, int argc, char **argv)
 	if (argc < 5 || argc > 6)
 	{
 		printf(RED"    🚨 !! Wrong number of arguments !! 🚨\n"RES);
-
 		printf("Set \e[1;33m4 arguments\e[0m, number of philosophers");
 		printf(", time to die, time to eat, time to sleep!\n");
 		printf("You can set a \e[1;33m5th opcional argument \e[0mfor");
