@@ -6,11 +6,12 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/04 15:39:01 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/05 01:53:24 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,6 +19,11 @@ static void	checker(t_args **arg, int argc, int i)
 {
 	if ((*arg)->n_philo >= 1)
 		i = 1;
+	else
+	{
+		printf("Please set \e[1;36mat least 1 philosopher\e[0m\n");
+		exit(EXIT_FAILURE);
+	}
 	if ((*arg)->t_die >= 0)
 		i++;
 	if ((*arg)->t_eat >= 0)
@@ -49,6 +55,12 @@ static void	init_variables(t_args **arg, int argc, char **argv)
 		(*arg)->n_eat = ft_atoi(argv[5]);
 	else
 		(*arg)->n_eat = -1;
+}
+
+static void	init_mutex(t_data *d)
+{
+	pthread_mutex_init(d->philo->l_fork, NULL);
+	pthread_mutex_init(d->philo->r_fork, NULL);
 }
 
 void	parser(t_data *d, int argc, char **argv)

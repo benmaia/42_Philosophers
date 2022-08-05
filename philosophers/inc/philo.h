@@ -6,7 +6,11 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/04 20:30:17 by bmiguel-         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/03 15:58:35 by bmiguel-         ###   ########.fr       */
+>>>>>>> 759e51a5f4f977e5af7375d880d7868f09df4ec9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +56,7 @@ typedef struct s_philo {
 	pthread_mutex_t	*r_fork;
 	unsigned int	nb;
 	int				state;
+	pthread_t		th;
 }	t_philo;
 
 typedef struct s_data {
