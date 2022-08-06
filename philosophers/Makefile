@@ -31,7 +31,7 @@ OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
 # COMPILER & FLAGS #
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=thread -static-libasan -g
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -static-libasan -g
 LDFLAGS		= -fsanitize=address -static-libasan -g
 
 # LIBRARIES #

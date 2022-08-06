@@ -6,11 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/08/04 20:30:17 by bmiguel-         ###   ########.fr       */
-=======
-/*   Updated: 2022/08/03 15:58:35 by bmiguel-         ###   ########.fr       */
->>>>>>> 759e51a5f4f977e5af7375d880d7868f09df4ec9
+/*   Updated: 2022/08/06 01:31:25 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +18,8 @@
 # include <string.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <sys/time.h>
+# include <bits/pthreadtypes.h>
 
 // Colors
 # define BLACK "\e[1;30m"
@@ -52,17 +50,18 @@ typedef struct s_args {
 }	t_args;
 
 typedef struct s_philo {
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	r_fork;
 	unsigned int	nb;
 	int				state;
-	pthread_t		th;
+	long long		time;
 }	t_philo;
 
 typedef struct s_data {
 	t_args		*arg;
 	t_philo		*philo;
 	t_status	*status;
+	long long	*start_time;
 }	t_data;
 
 /*#################### PARSER ##################*/
@@ -71,11 +70,13 @@ void			parser(t_data *d, int argc, char **argv);
 
 /*#################### PARSER ##################*/
 
-void			init(t_data *d, t_data *g, int x);
+void			init(t_data *g);
 
 /*#################### UTILS ##################*/
 
 unsigned int	ft_atoi(const char *str);
+
+char			*ft_itoa(int n);
 
 /*#################### FREE ##################*/
 

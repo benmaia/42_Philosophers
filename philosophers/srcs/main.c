@@ -15,11 +15,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	*d;
 	t_data	g;
 
 	parser(&g, argc, argv);
-	init(d, &g, -1);
+	init(&g);
 	ft_free ((void *)&g.arg);
 	return (0);
 }

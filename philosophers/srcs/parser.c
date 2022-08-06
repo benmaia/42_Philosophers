@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/05 01:53:24 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:20:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static void	init_variables(t_args **arg, int argc, char **argv)
 		(*arg)->n_eat = -1;
 }
 
-static void	init_mutex(t_data *d)
+void	init_mutex(t_data *d)
 {
-	pthread_mutex_init(d->philo->l_fork, NULL);
-	pthread_mutex_init(d->philo->r_fork, NULL);
+	pthread_mutex_init(&d->philo->l_fork, NULL);
+	pthread_mutex_init(&d->philo->r_fork, NULL);
 }
 
 void	parser(t_data *d, int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:45:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/04 22:25:47 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/06 01:36:25 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,53 @@
 #include <bits/pthreadtypes.h>
 #include <pthread.h>
 #include <stdio.h>
+#include <string.h>
+#include <sys/time.h>
 #include <unistd.h>
 
-void	array_struct(t_data *d, t_data *g, int i)
+void	init_philos(t_data *g)
 {
-	d = malloc(sizeof(t_data) * g->arg->n_philo);
+	int	i;
+
+	i = -1;
+	g->philo = malloc(sizeof(t_philo) * g->arg->n_philo);
 	while (++i < g->arg->n_philo)
 	{
-		d[i].philo->nb = i + 1;
-		if (pthread_mutex_init(d[i].philo->r_fork, NULL))
+		g->philo[i].nb = i + 1;
+		g->philo->time = g->philo->time;
+		if (pthread_mutex_init(&g->philo[i].r_fork, NULL))
 		{
 			perror("Error");
-			ft_free((void *)d);
+			ft_free((void *)g);
 		}
-		if (i == 0)
-			/*d[i].philo->l_fork = d[g->arg->n_philo - 1].philo->r_fork;*/
-			i = 0;
-		else
-			d[i].philo->l_fork = d[i - 1].philo->r_fork;
+		if (i != 0)
+			g->philo[i].l_fork = g->philo[i - 1].r_fork;
 	}
-	d[0].philo->l_fork = d[g->arg->n_philo - 1].philo->r_fork;
+	g->philo[0].l_fork = g->philo[i - 1].r_fork;
 }
 
-static void	*init_philos(void *arg)
+void	*exec(void *arg)
 {
-	t_data		*d;
+	t_philo			*p;
 
-	d = arg;
-	printf("%d\n", d->arg->n_philo);
+	p = arg;
+	printf("Hello I'm %d\n", p->nb);
 	return (arg);
 }
 
-void	init(t_data *d, t_data *g, int i)
+void	init(t_data *g)
 {
 	pthread_t	*philo;
+	int			i;
 
-	array_struct(d, g, -1);
-	philo = malloc(sizeof(pthread_t *));
+	i = -1;
+	init_philos(g);
+	philo = malloc(sizeof(pthread_t *) * g->arg->n_philo);
 	while (++i < g->arg->n_philo)
-		pthread_create(&philo[i], NULL, &init_philos, (void *)g);
+		pthread_create(&philo[i], NULL, &exec, (void *)&g->philo[i]);
 	i = -1;
 	while (++i < g->arg->n_philo)
 		pthread_join(philo[i], NULL);
 	ft_free ((void *)&philo);
+	ft_free ((void *)&g->philo);
 }
