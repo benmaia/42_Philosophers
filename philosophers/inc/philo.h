@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/06 01:31:25 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/06 22:06:02 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ typedef struct s_philo {
 	pthread_mutex_t	r_fork;
 	unsigned int	nb;
 	int				state;
+	long long		s_time;
 	long long		time;
+	t_args			*arg;
 }	t_philo;
 
 typedef struct s_data {
@@ -68,13 +70,19 @@ typedef struct s_data {
 
 void			parser(t_data *d, int argc, char **argv);
 
-/*#################### PARSER ##################*/
+/*#################### EXEC ##################*/
+
+void			*exec(void *arg);
+
+/*#################### INIT ##################*/
 
 void			init(t_data *g);
 
 /*#################### UTILS ##################*/
 
 unsigned int	ft_atoi(const char *str);
+
+void			cur_time(t_philo *p);
 
 char			*ft_itoa(int n);
 

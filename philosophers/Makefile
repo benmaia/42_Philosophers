@@ -23,6 +23,7 @@ OBJ_DIR		=	$(BUILD_DIR)/objects
 # FILES .C #
 SRC		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils.c \
+				$(SRC_DIR)/exec.c \
 				$(SRC_DIR)/init.c \
 				$(SRC_DIR)/parser.c \
 
@@ -31,7 +32,7 @@ OBJ			=	$(patsubst %.c, %.o, $(subst $(SRC_DIR), $(OBJ_DIR), $(SRC)))
 
 # COMPILER & FLAGS #
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -static-libasan -g
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=thread -static-libasan -g
 LDFLAGS		= -fsanitize=address -static-libasan -g
 
 # LIBRARIES #
