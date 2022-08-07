@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:45:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/06 21:53:18 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/07 15:44:26 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@
 void	init_philos(t_data *g)
 {
 	int				i;
-	struct timeval	tv;
+	static int		died;
 
 	i = -1;
-	gettimeofday(&tv, NULL);
 	g->philo = malloc(sizeof(t_philo) * g->arg->n_philo);
 	while (++i < g->arg->n_philo)
 	{
 		g->philo[i].nb = i + 1;
-		g->philo[i].s_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 		g->philo[i].arg = g->arg;
+		g->philo[i].state = &died; 
 		if (pthread_mutex_init(&g->philo[i].r_fork, NULL))
 		{
 			perror("Error");
@@ -49,8 +48,8 @@ void	init(t_data *g)
 	int			i;
 
 	i = -1;
-	init_philos(g);
 	philo = malloc(sizeof(pthread_t *) * g->arg->n_philo);
+	init_philos(g);
 	while (++i < g->arg->n_philo)
 		pthread_create(&philo[i], NULL, &exec, (void *)&g->philo[i]);
 	i = -1;

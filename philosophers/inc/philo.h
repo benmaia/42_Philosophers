@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/06 22:06:02 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/06 23:58:52 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_philo {
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	r_fork;
 	unsigned int	nb;
-	int				state;
+	int				*state;
 	long long		s_time;
 	long long		time;
 	t_args			*arg;
@@ -82,7 +82,7 @@ void			init(t_data *g);
 
 unsigned int	ft_atoi(const char *str);
 
-void			cur_time(t_philo *p);
+long long			cur_time(t_philo *p);
 
 char			*ft_itoa(int n);
 
