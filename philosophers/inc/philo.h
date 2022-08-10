@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/09 18:52:40 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/10 01:42:59 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ unsigned int	ft_atoi(const char *str);
 
 long long			cur_time(void);
 
-char			*ft_itoa(int n);
+long long			time_ms(t_philo *p);
 
-int	ft_isdigit(int arg);
+void				printf_mutex(t_philo *p);
+
+int				ft_isdigit(int arg);
 
 /*#################### FREE ##################*/
 

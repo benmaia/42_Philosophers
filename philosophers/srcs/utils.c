@@ -6,18 +6,26 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:18:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/09 17:24:03 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/10 01:41:50 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 #include <stdio.h>
 
-int	ft_isdigit(int arg)
+long long	time_ms(t_philo *p)
 {
-	if (arg >= '0' && arg <= '9')
-		return (1);
-	return (0);
+	return (cur_time() - p->g->start_time);
+}
+
+void	printf_mutex(t_philo *p)
+{
+	pthread_mutex_t	print;
+
+	pthread_mutex_init(&print, NULL);
+	pthread_mutex_lock(&print);
+	printf("Time %lld -> I'm alive %d\n", time_ms(p), p->nb);
+	pthread_mutex_unlock(&print);
 }
 
 long long	cur_time(void)
@@ -55,47 +63,4 @@ unsigned int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * new);
-}
-
-static size_t	nb_len(int nb)
-{
-	int	len;
-
-	len = 0;
-	if (nb <= 0)
-		len++;
-	while (nb)
-	{
-		len++;
-		nb = nb / 10;
-	}
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	int		len;
-	char	*str;
-	long	nb;
-
-	len = nb_len(n);
-	nb = n;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = -nb;
-	}
-	if (nb == 0)
-		str[0] = '0';
-	str[len--] = '\0';
-	while (nb)
-	{
-		str[len] = nb % 10 + '0';
-		len--;
-		nb = nb / 10;
-	}
-	return (str);
 }
