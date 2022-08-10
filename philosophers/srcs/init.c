@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:45:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/07 15:44:26 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/09 19:10:20 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,22 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
 
 void	init_philos(t_data *g)
 {
 	int				i;
-	static int		died;
+	/*static int		died;*/
 
 	i = -1;
+	g->start_time = cur_time();
+	g->state = NONE;
 	g->philo = malloc(sizeof(t_philo) * g->arg->n_philo);
 	while (++i < g->arg->n_philo)
 	{
 		g->philo[i].nb = i + 1;
-		g->philo[i].arg = g->arg;
-		g->philo[i].state = &died; 
+		g->philo[i].g = g;
 		if (pthread_mutex_init(&g->philo[i].r_fork, NULL))
 		{
 			perror("Error");

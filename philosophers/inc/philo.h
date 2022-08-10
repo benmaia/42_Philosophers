@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/06 23:58:52 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:52:40 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,37 @@
 # define ORANGE1 "\033[38;5;214m"
 # define ORANGE2 "\033[38;5;202m"
 
+typedef struct s_data	t_data;
+
 typedef enum s_status {
 	NONE,
+	THINKING,
 	EATING,
 	SLEEPING,
 	DIED
 }	t_status;
 
 typedef struct s_args {
-	int	n_philo;
-	int	t_die;
-	int	t_eat;
-	int	t_sleep;
-	int	n_eat;
+	long long	n_philo;
+	long long	t_die;
+	long long	t_eat;
+	long long	t_sleep;
+	long long	n_eat;
 }	t_args;
 
 typedef struct s_philo {
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	r_fork;
 	unsigned int	nb;
-	int				*state;
-	long long		s_time;
-	long long		time;
-	t_args			*arg;
+	t_data			*g;
 }	t_philo;
 
 typedef struct s_data {
 	t_args		*arg;
 	t_philo		*philo;
-	t_status	*status;
-	long long	*start_time;
+	t_status		*status;
+	long long	start_time;
+	int			state;
 }	t_data;
 
 /*#################### PARSER ##################*/
@@ -82,9 +83,11 @@ void			init(t_data *g);
 
 unsigned int	ft_atoi(const char *str);
 
-long long			cur_time(t_philo *p);
+long long			cur_time(void);
 
 char			*ft_itoa(int n);
+
+int	ft_isdigit(int arg);
 
 /*#################### FREE ##################*/
 

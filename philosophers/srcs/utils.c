@@ -6,19 +6,26 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:18:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/06 23:25:10 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:24:03 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 #include <stdio.h>
 
-long long	cur_time(t_philo *p)
+int	ft_isdigit(int arg)
+{
+	if (arg >= '0' && arg <= '9')
+		return (1);
+	return (0);
+}
+
+long long	cur_time(void)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (p->time = ((tv.tv_sec * 1000) + (tv.tv_usec / 1000)));
+	return (((tv.tv_sec * 1000) + (tv.tv_usec / 1000)));
 }
 
 void	ft_free(void **ptr)
@@ -50,7 +57,7 @@ unsigned int	ft_atoi(const char *str)
 	return (sign * new);
 }
 
-size_t	nb_len(int nb)
+static size_t	nb_len(int nb)
 {
 	int	len;
 
