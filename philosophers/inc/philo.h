@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/10 01:42:59 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/10 22:36:05 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,28 @@
 
 typedef struct s_data	t_data;
 
-typedef enum s_status {
-	NONE,
-	THINKING,
-	EATING,
-	SLEEPING,
-	DIED
-}	t_status;
-
-typedef struct s_args {
-	long long	n_philo;
-	long long	t_die;
-	long long	t_eat;
-	long long	t_sleep;
-	long long	n_eat;
-}	t_args;
-
 typedef struct s_philo {
-	pthread_mutex_t	l_fork;
-	pthread_mutex_t	r_fork;
-	unsigned int	nb;
-	t_data			*g;
+	short					nb;
+	short					p_eat;
+	struct timeval		time;
+	pthread_mutex_t	fork;
+	pthread_t			philo;
+	t_data				*global;
 }	t_philo;
 
 typedef struct s_data {
-	t_args		*arg;
-	t_philo		*philo;
-	t_status		*status;
-	long long	start_time;
-	int			state;
+	short					nb_philo;
+	short					*fork;
+	struct timeval		s_time;
+	pthread_mutex_t	dying;
+	pthread_mutex_t	eating;
+	long long			t_die;
+	long long			t_eat;
+	long long			t_sleep;
+	long long			dead;
+	long long			start_time;
+	short					t_x_eat;
+	t_philo				*philo;
 }	t_data;
 
 /*#################### PARSER ##################*/

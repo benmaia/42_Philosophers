@@ -19,6 +19,6 @@ int	main(int argc, char **argv)
 
 	parser(&g, argc, argv);
 	init(&g);
-	ft_free ((void *)&g.arg);
+	ft_free ((void *)&g);
 	return (0);
 }
