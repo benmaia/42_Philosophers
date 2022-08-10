@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 21:40:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/09 19:23:20 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/10 01:02:25 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ long long	time_ms(t_philo *p)
 	return (cur_time() - p->g->start_time);
 }
 
-void	printf_mutex(t_philo *p)
-{
-	pthread_mutex_t	print;
+/*void	printf_mutex(t_philo *p)*/
+/*{*/
+	/*pthread_mutex_t	print;*/
 
-	pthread_mutex_init(&print, NULL);
-	printf("Time %lld -> I'm alive %d\n", time_ms(p), p->nb);
-}
+	/*pthread_mutex_init(&print, NULL);*/
+	/*printf("Time %lld -> I'm alive %d\n", time_ms(p), p->nb);*/
+/*}*/
 
 void	*exec(void *arg)
 {
@@ -43,8 +43,8 @@ void	*exec(void *arg)
 	while (1)
 	{
 		pthread_mutex_lock(&print);
-		usleep(100);
-		printf("Time %lld\n", time_ms(p));
+		usleep(10);
+		printf("Time %lld nb %d\n", time_ms(p), p->nb);
 		pthread_mutex_unlock(&print);
 	}
 	/*pthread_mutex_init(&die, NULL);*/
