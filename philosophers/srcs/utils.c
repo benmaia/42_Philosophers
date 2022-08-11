@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:18:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:35:18 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/12 00:24:21 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ unsigned int	ft_atoi(const char *str)
 
 void	ft_lock(t_data *g, int me, int beside)
 {
-	pthread_mutex_lock(&g->philo[me].fork);
-	check_if_dead(g);
 	pthread_mutex_lock(&g->philo[beside].fork);
+	check_if_dead(g);
+	pthread_mutex_lock(&g->philo[me].fork);
 }

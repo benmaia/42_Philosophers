@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 21:40:13 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:28:22 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/12 00:21:07 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	sleeping(t_data *g, t_philo *p)
 		me = beside;
 		beside = 0;
 	}
-	pthread_mutex_unlock(&g->philo[me].fork);
 	pthread_mutex_unlock(&g->philo[beside].fork);
+	pthread_mutex_unlock(&g->philo[me].fork);
 	if (!check_if_dead(g))
 		printf("%lld %d is sleeping \n", time_ms(g), p->nb);
 	else

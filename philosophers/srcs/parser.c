@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/11 22:28:55 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/12 00:30:16 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ static void	init_variables(t_data *g, int argc, char **argv)
 	g->t_die = ft_atoi(argv[2]);
 	g->t_eat = ft_atoi(argv[3]);
 	g->t_sleep = ft_atoi(argv[4]);
+	g->dead = 0;
 	if (argc == 6)
 		g->t_x_eat = ft_atoi(argv[5]);
 	else
-		g->t_x_eat = -1;
+		g->t_x_eat = 0;
 }
 
 void	parser(t_data *g, int argc, char **argv)
@@ -71,7 +72,8 @@ void	parser(t_data *g, int argc, char **argv)
 	checker(g, argc, 0);
 	if (g->nb_philo == 1)
 	{
-		printf("%lld %d died\n", g->dead, 1);
+		usleep(g->t_die * 1000);
+		printf("%lld %d died\n", g->t_die, 1);
 		exit(EXIT_FAILURE);
 	}
 }
