@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/10 22:36:05 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:27:32 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void			parser(t_data *d, int argc, char **argv);
 
 void			*exec(void *arg);
 
+void	print_eat(t_data *g, t_philo *p);
+
+void	sleeping(t_data *g, t_philo *p);
+
+
 /*#################### INIT ##################*/
 
 void			init(t_data *g);
@@ -76,13 +81,19 @@ void			init(t_data *g);
 
 unsigned int	ft_atoi(const char *str);
 
-long long			cur_time(void);
+long long			time_ms(t_data *g);
 
-long long			time_ms(t_philo *p);
+void	ft_lock(t_data *g, int me, int beside);
 
-void				printf_mutex(t_philo *p);
+long long	time_2_eat(t_philo *p);
 
-int				ft_isdigit(int arg);
+void	thread_destroyer(t_data *g);
+
+/*#################### CHECK ##################*/
+
+int	keep_going(t_data *g);
+
+int	check_if_dead(t_data *g);
 
 /*#################### FREE ##################*/
 

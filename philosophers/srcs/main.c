@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 
 	parser(&g, argc, argv);
 	init(&g);
-	ft_free ((void *)&g);
+	while (check_if_dead(&g) == 0)
+		keep_going(&g);
+	thread_destroyer(&g);
 	return (0);
 }

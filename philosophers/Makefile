@@ -23,6 +23,7 @@ OBJ_DIR		=	$(BUILD_DIR)/objects
 # FILES .C #
 SRC		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils.c \
+				$(SRC_DIR)/check.c \
 				$(SRC_DIR)/exec.c \
 				$(SRC_DIR)/init.c \
 				$(SRC_DIR)/parser.c \

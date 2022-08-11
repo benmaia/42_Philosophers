@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:45:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/10 22:44:07 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/11 23:02:09 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	init(t_data *g)
 
 	i = -1;
 	g->start_time = 0; 
+	g->dead = 0;
+	pthread_mutex_init(&g->dying, NULL);
+	pthread_mutex_init(&g->eating, NULL);
 	g->philo = malloc(sizeof(t_philo) * g->nb_philo);
 	while (++i < g->nb_philo)
 	{
@@ -35,7 +38,7 @@ void	init(t_data *g)
 		if (pthread_mutex_init(&g->philo[i].fork, NULL))
 		{
 			perror("Error");
-			ft_free((void *)g);
+			free (g);
 		}
 		if (i != 0)
 			gettimeofday(&g->s_time, NULL);

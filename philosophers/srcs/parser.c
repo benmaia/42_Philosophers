@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/10 22:33:34 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:28:55 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	checker(t_data *g, int argc, int i)
 	printf(RED"🚨  ! Wrong arguments !  🚨\n"RES);
 	printf("Please use only \e[1;36mvalid unsigned int \e[0mas arguments\n");
 	printf(ORANGE1"No signs, no letters, no special chars\n"RES);
-	ft_free ((void *)g);
+	free (g);
 	exit (EXIT_FAILURE);
 }
 
