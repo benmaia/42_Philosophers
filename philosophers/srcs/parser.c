@@ -6,15 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 23:31:58 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/12 00:30:16 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/14 00:09:28 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "philo.h"
 
+/*Checks if the numbers are positive or not*/
 static void	checker(t_data *g, int argc, int i)
 {
 	if (g->nb_philo >= 1)
@@ -44,6 +42,7 @@ static void	checker(t_data *g, int argc, int i)
 	exit (EXIT_FAILURE);
 }
 
+/*Init the global args passed by the user to a struct*/
 static void	init_variables(t_data *g, int argc, char **argv)
 {
 	g->nb_philo = ft_atoi(argv[1]);
@@ -57,6 +56,8 @@ static void	init_variables(t_data *g, int argc, char **argv)
 		g->t_x_eat = 0;
 }
 
+/*Checks the number of argvs, and calls the functions*/
+/*above to help it*/
 void	parser(t_data *g, int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)

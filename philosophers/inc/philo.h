@@ -6,7 +6,7 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:59:52 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/11 22:27:32 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/13 23:56:38 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,27 @@
 typedef struct s_data	t_data;
 
 typedef struct s_philo {
-	short					nb;
-	short					p_eat;
-	struct timeval		time;
+	short			nb;
+	short			p_eat;
+	struct timeval	time;
 	pthread_mutex_t	fork;
-	pthread_t			philo;
-	t_data				*global;
+	pthread_t		philo;
+	t_data			*global;
 }	t_philo;
 
 typedef struct s_data {
-	short					nb_philo;
-	short					*fork;
-	struct timeval		s_time;
+	short			nb_philo;
+	short			*fork;
+	struct timeval	s_time;
 	pthread_mutex_t	dying;
 	pthread_mutex_t	eating;
-	long long			t_die;
-	long long			t_eat;
-	long long			t_sleep;
-	long long			dead;
-	long long			start_time;
-	short					t_x_eat;
-	t_philo				*philo;
+	long long		t_die;
+	long long		t_eat;
+	long long		t_sleep;
+	long long		dead;
+	long long		start_time;
+	short			t_x_eat;
+	t_philo			*philo;
 }	t_data;
 
 /*#################### PARSER ##################*/
@@ -68,10 +68,9 @@ void			parser(t_data *d, int argc, char **argv);
 
 void			*exec(void *arg);
 
-void	print_eat(t_data *g, t_philo *p);
+void			print_eat(t_data *g, t_philo *p);
 
-void	sleeping(t_data *g, t_philo *p);
-
+void			sleeping(t_data *g, t_philo *p);
 
 /*#################### INIT ##################*/
 
@@ -81,19 +80,19 @@ void			init(t_data *g);
 
 unsigned int	ft_atoi(const char *str);
 
-long long			time_ms(t_data *g);
+long long		time_ms(t_data *g);
 
-void	ft_lock(t_data *g, int me, int beside);
+void			ft_lock(t_data *g, int me, int beside);
 
-long long	time_2_eat(t_philo *p);
+long long		time_2_eat(t_philo *p);
 
-void	thread_destroyer(t_data *g);
+void			thread_destroyer(t_data *g);
 
 /*#################### CHECK ##################*/
 
-int	keep_going(t_data *g);
+int				keep_going(t_data *g);
 
-int	check_if_dead(t_data *g);
+int				check_if_dead(t_data *g);
 
 /*#################### FREE ##################*/
 

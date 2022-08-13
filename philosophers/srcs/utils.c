@@ -6,14 +6,13 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:18:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/12 00:24:21 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/14 00:11:35 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
-#include <pthread.h>
-#include <stdio.h>
+#include "philo.h"
 
+/*Returns the time to eat in miliseconds*/
 long long	time_2_eat(t_philo *p)
 {
 	struct timeval	tv;
@@ -26,6 +25,7 @@ long long	time_2_eat(t_philo *p)
 	return ((usec / 1000) + (sec * 1000));
 }
 
+/*Returns the current time in miliseconds*/
 long long	time_ms(t_data *g)
 {
 	struct timeval	tv;
@@ -38,6 +38,8 @@ long long	time_ms(t_data *g)
 	return ((usec / 1000) + (sec * 1000));
 }
 
+/*Join the threads so it doesn't leak and*/
+/*also destoryes the mutexes*/
 void	thread_destroyer(t_data *g)
 {
 	int	i;
@@ -53,6 +55,7 @@ void	thread_destroyer(t_data *g)
 	free (g->philo);
 }
 
+/*Replica of atoi from stdlib*/
 unsigned int	ft_atoi(const char *str)
 {
 	int	i;

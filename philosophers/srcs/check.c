@@ -6,15 +6,14 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 20:48:56 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/11 23:01:21 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/14 00:11:58 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "philo.h"
 
+/*If someone dies, it will return 1*/
+/*and stop the program right away*/
 int	check_if_dead(t_data *g)
 {
 	int	flag;
@@ -29,12 +28,14 @@ int	check_if_dead(t_data *g)
 	return (0);
 }
 
+/*If anyone dies, the program will be ended,*/
+	/*and prints that the philo have died*/
 int	dead_checker(t_data *g)
 {
 	int	i;
 
 	i = -1;
-	while(++i < g->nb_philo)
+	while (++i < g->nb_philo)
 	{
 		pthread_mutex_lock(&g->eating);
 		if (time_2_eat(&g->philo[i]) >= g->t_die)
@@ -48,6 +49,9 @@ int	dead_checker(t_data *g)
 	return (0);
 }
 
+/*Here it will see how many times each philo eat,*/
+/*if it reaches the number passed in the argv[argc5]*/
+/*then it will stop the program*/
 int	eat_checker(t_data *g)
 {
 	int	i;
@@ -68,6 +72,7 @@ int	eat_checker(t_data *g)
 	return (1);
 }
 
+/*Checks if are any dead philo with the functions above*/
 int	keep_going(t_data *g)
 {
 	if (dead_checker(g) || eat_checker(g))

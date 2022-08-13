@@ -6,27 +6,22 @@
 /*   By: bmiguel- <bmiguel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:45:21 by bmiguel-          #+#    #+#             */
-/*   Updated: 2022/08/12 00:10:20 by bmiguel-         ###   ########.fr       */
+/*   Updated: 2022/08/14 00:04:59 by bmiguel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
-#include <bits/pthreadtypes.h>
-#include <bits/types/struct_timeval.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/time.h>
-#include <time.h>
-#include <unistd.h>
+#include "philo.h"
 
+/*Here is just to initialize the structs we have,*/
+/*including the data and the info in each philo */
+/*before even creating him, also init the fork mutex*/
 void	init(t_data *g)
 {
 	int				i;
 
 	i = -1;
 	g->philo = malloc(sizeof(t_philo) * g->nb_philo);
-	g->start_time = 0; 
+	g->start_time = 0;
 	while (++i < g->nb_philo)
 		pthread_mutex_init(&g->philo[i].fork, NULL);
 	pthread_mutex_init(&g->dying, NULL);
